@@ -1,6 +1,5 @@
-/* eslint-disable react/display-name */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { memo } from 'react';
+import React from 'react';
 import cn from 'classnames';
 import { PartialTodo } from '../../types/Todo';
 
@@ -8,7 +7,7 @@ type Props = {
   tempTodo: PartialTodo;
 };
 
-export const TempTodo: React.FC<Props> = memo(({ tempTodo }) => {
+export const TempTodo: React.FC<Props> = ({ tempTodo }) => {
   return (
     <div
       data-cy="Todo"
@@ -36,4 +35,4 @@ export const TempTodo: React.FC<Props> = memo(({ tempTodo }) => {
       </div>
     </div>
   );
-});
+};

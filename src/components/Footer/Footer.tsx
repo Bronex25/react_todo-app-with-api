@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { Todo } from '../../types/Todo';
 
 type Props = {
@@ -11,7 +11,14 @@ type Props = {
 
 export const Footer: React.FC<Props> = memo(
   ({ todos, onClickFilter, selectedFilter, clearAllCompleted }) => {
-    const notCompletedTodos = todos.filter(todo => !todo.completed);
+    const notCompletedTodos = useMemo(
+      () => todos.filter(todo => !todo.completed),
+      [todos],
+    );
+    const hasCompletedTodos = useMemo(
+      () => todos.some(todo => todo.completed),
+      [todos],
+    );
 
     return (
       <footer className="todoapp__footer" data-cy="Footer">
@@ -53,7 +60,7 @@ export const Footer: React.FC<Props> = memo(
           className="todoapp__clear-completed"
           data-cy="ClearCompletedButton"
           onClick={() => clearAllCompleted()}
-          disabled={!todos.find(t => t.completed)}
+          disabled={!hasCompletedTodos}
         >
           Clear completed
         </button>

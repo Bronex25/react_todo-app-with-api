@@ -46,7 +46,7 @@ export const App: React.FC = () => {
         case 'completed':
           return todo.completed;
         default:
-          return todo;
+          return true;
       }
     });
   }, [todos, selectedFilter]);
@@ -258,6 +258,10 @@ export const App: React.FC = () => {
     }
   };
 
+  const onCloseErrorMessage = () => {
+    setErrorMessage('');
+  };
+
   useEffect(() => {
     getTodos()
       .then(setTodos)
@@ -346,7 +350,10 @@ export const App: React.FC = () => {
         )}
       </div>
 
-      <ErrorMessage errorMessage={errorMessage} />
+      <ErrorMessage
+        errorMessage={errorMessage}
+        onCloseErrorMessage={onCloseErrorMessage}
+      />
     </div>
   );
 };

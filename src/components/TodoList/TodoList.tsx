@@ -24,7 +24,11 @@ export const TodoList: React.FC<Props> = ({
   setEditingTodoId,
 }) => {
   return (
-    <section className="todoapp__main" data-cy="TodoList" hidden={!todos}>
+    <section
+      className="todoapp__main"
+      data-cy="TodoList"
+      hidden={todos.length === 0}
+    >
       {todos.map(todo => (
         <TodoItem
           todo={todo}
